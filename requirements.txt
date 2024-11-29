@@ -1,0 +1,57 @@
+# brew install poppler tesseract libmagic
+
+unstructured[all-docs]
+pillow
+lxml 
+langchain
+langchain-community 
+langchain-groq
+python_dotenv
+# chromadb
+tiktoken
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# llama_index 
+# llama_index-embeddings-huggingface 
+# llama_index-llms-groq
+# # unstructured[all-docs]
+# unstructured[csv, doc, pdf]
+# # pillow 
+# # pydantic 
+# # lxml 
+# # matplotlib
+# # pytesseract
+
+# # unstructured-pytesseract
+# # tesseract
+
+# torch 
+# torchvision 
+# torchaudio
+
+
+# # brew install tesseract
+# # brew install poppler
+# # langchain
+# # pip install 'unstructured[local-inference]'
+# # cython
+# # git clone https://github.com/facebookresearch/detectron2.git
