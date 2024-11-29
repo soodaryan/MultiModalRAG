@@ -6,11 +6,16 @@ from PIL import Image
 
 from dotenv import load_dotenv
 from transformers import pipeline
-from extractionUtils import tables_text
 
 from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
+
+# if running on collab
+from MultiModalRAG.DataExtraction.extractionUtils import tables_text
+
+# # otherwise 
+# from extractionUtils import tables_text
 
 load_dotenv()
 
@@ -60,7 +65,7 @@ def encode_images(pipe):
 def text_table_img (path) : 
     tables, texts = tables_text(path)
 
-    pipe = pipeline("image-to-text", model="Salesforce/blip-image-captioning-large", device = "mps")
+    pipe = pipeline("image-to-text", model="Salesforce/blip-image-captioning-large", device = 0)
     images = encode_images(pipe)
 
 
