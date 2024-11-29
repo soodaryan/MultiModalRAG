@@ -2,6 +2,7 @@
 
 unstructured[all-docs]
 pillow
+easyocr
 lxml 
 langchain
 langchain-community 

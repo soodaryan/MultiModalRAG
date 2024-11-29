@@ -2,6 +2,7 @@ import warnings
 warnings.filterwarnings("ignore")
 
 import glob
+import easyocr
 from PIL import Image
 from typing import Optional
 
@@ -66,24 +67,35 @@ def get_summaries (tables, texts, api_key : Optional[str] = None) :
 
 def encode_images(pipe):
     img_ls = []
+    imgs = []
     img_path_list = glob.glob("extracted/figure*jpg")
+
+    reader = easyocr.Reader(['en']) 
 
     for i in img_path_list:
         img = Image.open(i).convert('RGB')
         img_ls.append(pipe(img)[0]["generated_text"])
 
-    return img_ls
+        results = reader.readtext(i)
+        extracted_text = ""
+
+        # Print the results
+        for _ , text , _ in results:
+            extracted_text += f" {text}"
+        imgs.append(extracted_text)
+
+    return imgs, img_ls
 
 def text_table_img (path, api_key : Optional[str] = None) : 
     tables, texts = tables_text(path)
 
     pipe = pipeline("image-to-text", model="Salesforce/blip-image-captioning-large", device = 0)
-    images = encode_images(pipe)
+    images, images_summary = encode_images(pipe)
 
 
     text_summary, table_summary = get_summaries(tables, texts, api_key)
 
-    return tables, texts, images , text_summary, table_summary, images
+    return tables, texts, images , table_summary, text_summary, images_summary
     
 if __name__ == "__main__" : 
     path = 'data/document.pdf'

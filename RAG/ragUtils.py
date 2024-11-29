@@ -57,6 +57,7 @@ def makeVectoreStore (texts,
     retriever.docstore.mset(list(zip(img_ids, images)))
     return retriever
 
+
 if __name__ == "__main__" : 
     # importing this here as its not needed anywhere else so shudnt be imported unneccesarily
     from DataExtraction.dataPreprocessing import text_table_img
