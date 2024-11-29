@@ -95,7 +95,7 @@ def text_table_img (path, api_key : Optional[str] = None) :
 
     text_summary, table_summary = get_summaries(tables, texts, api_key)
 
-    return tables, texts, images , table_summary, text_summary, images_summary
+    return tables, texts, images, text_summary, table_summary, images_summary
     
 if __name__ == "__main__" : 
     path = 'data/document.pdf'
