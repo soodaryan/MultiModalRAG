@@ -3,6 +3,7 @@ warnings.filterwarnings("ignore")
 
 import glob
 from PIL import Image
+from typing import Optional
 
 from dotenv import load_dotenv
 from transformers import pipeline
@@ -19,7 +20,7 @@ from MultiModalRAG.DataExtraction.extractionUtils import tables_text
 
 load_dotenv()
 
-def get_chain() : 
+def get_chain(api_key : Optional[str] = None) : 
 
     prompt_text = """
     You are an assistant tasked with summarizing tables and text.
@@ -35,16 +36,27 @@ def get_chain() :
 
     prompt = ChatPromptTemplate.from_template(prompt_text)
 
-    model = ChatGroq(
-        temperature=0.5,
-        model="llama-3.1-8b-instant"
-    )
+    if api_key : 
+
+        model = ChatGroq(
+            temperature=0.5,
+            model="llama-3.1-8b-instant",
+            groq_api_key = api_key 
+        )
+    
+    else :  
+
+        model = ChatGroq(
+            temperature=0.5,
+            model="llama-3.1-8b-instant"
+        )
+    
     chain = {"element": lambda x: x} | prompt | model | StrOutputParser()
 
     return chain
 
-def get_summaries (tables, texts): 
-    chain = get_chain()
+def get_summaries (tables, texts, api_key : Optional[str] = None) : 
+    chain = get_chain(api_key)
 
     text_summary = chain.batch(texts, {"max_concurrency": 3})
     html_tables = [i.metadata.text_as_html for i in tables]
@@ -62,14 +74,14 @@ def encode_images(pipe):
 
     return img_ls
 
-def text_table_img (path) : 
+def text_table_img (path, api_key : Optional[str] = None) : 
     tables, texts = tables_text(path)
 
     pipe = pipeline("image-to-text", model="Salesforce/blip-image-captioning-large", device = 0)
     images = encode_images(pipe)
 
 
-    text_summary, table_summary = get_summaries(tables, texts)
+    text_summary, table_summary = get_summaries(tables, texts, api_key)
 
     return tables, texts, images , text_summary, table_summary, images
     
