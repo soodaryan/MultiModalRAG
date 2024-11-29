@@ -9,8 +9,9 @@ langchain-groq
 python_dotenv
 # chromadb
 tiktoken
-
-
+langchain_huggingface
+chromadb
+langchain-chroma
 
 
 

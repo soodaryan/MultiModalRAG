@@ -1,15 +1,17 @@
 import uuid
-from langchain.vectorstores import Chroma
+from langchain_chroma import Chroma
 from langchain.storage import InMemoryStore
 from langchain.schema.document import Document
-from langchain.embeddings import OpenAIEmbeddings
 from langchain.retrievers.multi_vector import MultiVectorRetriever
-
+from langchain_huggingface import HuggingFaceEmbeddings
 
 def create_retriever (id_key = "doc_id") :
 
     # vectorstore for child chunks 
-    vectorstore = Chroma(collection_name="multi_modal_rag", embedding_function=OpenAIEmbeddings())
+    vectorstore = Chroma(
+        collection_name="multi_modal_rag",
+        embedding_function=HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+    )
 
     # storage layer for parent docs
     store = InMemoryStore()
