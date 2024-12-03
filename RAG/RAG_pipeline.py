@@ -104,9 +104,30 @@ def main():
     retriever = initialize_retriever(path, api_key)
     llm = initialize_llm()
     chain = create_chain(retriever, llm)
-    response = chain.invoke("What is the tender fee amount, and is it refundable?")
-    print(response)
+    queries = [
+        "What is the e-Tender notice number and the purpose of the tender mentioned in the document?",
+        "What are the eligibility criteria for bidders to participate in this tender?",
+        "What are the deadlines for submitting the online bids and physically submitting the tender fee and EMD?",
+        "What is the role of Annexure-G in determining supplier eligibility, and how is local content defined?",
+        "What is the payment structure for the successful supplier as mentioned in the document?",
+        "What are the warranty obligations for suppliers as outlined in Annexure-F?",
+        "How is the technical bid evaluated, and what criteria are used for shortlisting bidders?",
+        "What penalties are imposed for delays in delivery or non-performance by the supplier?",
+        "What does Annexure-E specify about the blacklisting or debarment of suppliers?",
+        "What does Annexure-D require from suppliers regarding manufacturer authorization?"
+    ]
+    responses = {}
 
+    for query in queries : 
+        response = chain.invoke(query)
+        responses[query] = response
+        print(f"Q) {query}")
+        print(f"A) {response}")
+    
 
+    for i in responses : 
+        print(f"Q) {i}")
+        print(f"A) {responses[i]}")
+    
 if __name__ == "__main__":
     main()

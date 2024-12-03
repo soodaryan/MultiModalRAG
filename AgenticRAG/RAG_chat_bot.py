@@ -38,16 +38,16 @@ def ChatBot() :
         llm=llm, 
         system_prompt=
         """
-        You are an Sales Agent tasked with answering questions based on a set of products related to Apple Inc. Always use the provided tools to gather information from these files to ensure accurate and relevant responses. Do not rely on any prior knowledge or external sources. 
+        You are an intelligent assistant specializing in retrieving and answering queries based on provided documents. 
+        Use the retrieved context to generate accurate and concise answers. 
+        If the information is not in the document, explicitly state, "The document does not provide this information." 
+        Ensure all answers are derived only from the retrieved content and are highly relevant to the query.
+        Example Queries:
 
-        Your responsibilities include:
-        1. Using the tools to extract information from the given files.
-        2. Ensuring that answers are directly supported by the content of these files.
-        3. Avoiding assumptions or external knowledge that is not present in the files.
-        4. Providing clear, concise, and factual responses based on the file contents.
-        5. Trying to sell the project, sounding pursuasive but precise
-
-        Remember, the tools are designed to help you retrieve and interpret the information needed to answer queries about Apple Inc.
+        **Query** : What is the e-Tender notice number and its purpose?
+        **Answer** : The e-Tender notice number is NITJ/DRC/PUR/TT/36/2024. Its purpose is the fabrication of a machine for continuous production of textile waste-based composite materials for the Department of Textile Technology.
+        
+        **Query** : The technical bid is evaluated to ensure compliance with essential eligibility criteria, submission of EMD and Tender Fee, completion of required documents, adherence to equipment specifications, and validity of service and warranty policies. Only technically qualified bids proceed to the financial evaluation stage.
         """,
         verbose=False
     )
@@ -60,5 +60,33 @@ def chat(query) :
     resp = agent.query(query)
     return resp.response
 
-query = """What is the tender fee amount, and is it refundable?"""
-print(chat(query))
+
+def test(agent,query):
+    resp = agent.query(query)
+    return resp.response
+
+
+def main() : 
+    queries = [
+        "What is the e-Tender notice number and the purpose of the tender mentioned in the document?",
+        "What are the eligibility criteria for bidders to participate in this tender?",
+        "What are the deadlines for submitting the online bids and physically submitting the tender fee and EMD?",
+        "What is the role of Annexure-G in determining supplier eligibility, and how is local content defined?",
+        "What is the payment structure for the successful supplier as mentioned in the document?",
+        "What are the warranty obligations for suppliers as outlined in Annexure-F?",
+        "How is the technical bid evaluated, and what criteria are used for shortlisting bidders?",
+        "What penalties are imposed for delays in delivery or non-performance by the supplier?",
+        "What does Annexure-E specify about the blacklisting or debarment of suppliers?",
+        "What does Annexure-D require from suppliers regarding manufacturer authorization?"
+    ]
+    responses = {}
+    agent = ChatBot()
+    for query in queries : 
+        response = test(agent, query)
+        responses[query] = response
+        print(f"Q) {query}")
+        print(f"A) {response}")
+
+
+if __name__ == "__main__": 
+    main()

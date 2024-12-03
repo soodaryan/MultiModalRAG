@@ -1,0 +1,45 @@
+{
+    "MultiModal Workflow": [
+      {
+        "Q": "What is the e-Tender notice number and the purpose of the tender mentioned in the document?",
+        "A": "The e-Tender notice number is NITJ/DRC/PUR/TT/36/2024. The purpose is to invite e-tenders for the fabrication of a machine for continuous production of textile waste-based composite materials for the Department of Textile Technology."
+      },
+      {
+        "Q": "What are the eligibility criteria for bidders to participate in this tender?",
+        "A": "Bidders must be Class I or Class II Local Suppliers. They need to provide a declaration of local content, submit technical bid documents, and ensure no conditional bids. Bidders must also submit Tender fees/EMD/Exemption Certificates."
+      },
+      {
+        "Q": "What are the deadlines for submitting the online bids and physically submitting the tender fee and EMD?",
+        "A": "Online bids must be submitted by 06.11.2024, 03:00 PM. The physical submission of Tender Fee and EMD must be received by 03:00 PM on the next working day if the submission date falls on a holiday."
+      },
+      {
+        "Q": "What is the role of Annexure-G in determining supplier eligibility, and how is local content defined?",
+        "A": "Annexure-G is a self-declaration form that suppliers submit to declare the local content of their products. Suppliers are categorized as Class I (50%+ local content), Class II (20-50%), or Non-local (<20%). Only Class I and II suppliers are eligible."
+      },
+      {
+        "Q": "What is the payment structure for the successful supplier as mentioned in the document?",
+        "A": "The payment structure is not explicitly mentioned. It highlights that disputes regarding the Bank Guarantee are resolved according to the terms and conditions of the order, with further details provided in the full tender document."
+      },
+      {
+        "Q": "What are the warranty obligations for suppliers as outlined in Annexure-F?",
+        "A": "Suppliers must provide a warranty from the date of installation, covering free after-sale service, part replacements, and preventive maintenance visits. Any delay in repairs will incur a penalty. The supplier is responsible for spares and maintenance throughout the warranty period."
+      },
+      {
+        "Q": "How is the technical bid evaluated, and what criteria are used for shortlisting bidders?",
+        "A": "The technical bid is evaluated on criteria like eligibility, completeness of documents, and compliance with equipment specifications. The location of service centers, authorization certificates, and service policies are also assessed before shortlisting bidders."
+      },
+      {
+        "Q": "What penalties are imposed for delays in delivery or non-performance by the supplier?",
+        "A": "A penalty of 0.5% per week (up to 10% of the value) is imposed for delivery delays. Non-performance penalties require the supplier to maintain 95% uptime over 365 days and impose a similar penalty for delays in rectifying defects."
+      },
+      {
+        "Q": "What does Annexure-E specify about the blacklisting or debarment of suppliers?",
+        "A": "Annexure-E states that bidders should not be blacklisted by any government department. If false information is provided, the tender can be canceled, and the bidder may face actions like blacklisting and forfeiting the EMD."
+      },
+      {
+        "Q": "What does Annexure-D require from suppliers regarding manufacturer authorization?",
+        "A": "Annexure-D requires suppliers to authorize their agents or distributors to bid on their behalf. The supplier guarantees and provides a warranty for goods supplied through their agents or distributors, ensuring they are liable for all actions of the agent."
+      }
+    ]
+  }
+  
