@@ -2,8 +2,8 @@ import uuid
 from langchain_chroma import Chroma
 from langchain.storage import InMemoryStore
 from langchain.schema.document import Document
-from langchain.retrievers.multi_vector import MultiVectorRetriever
 from langchain_huggingface import HuggingFaceEmbeddings
+from langchain.retrievers.multi_vector import MultiVectorRetriever
 
 def create_retriever (id_key = "doc_id") :
     """

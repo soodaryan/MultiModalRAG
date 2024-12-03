@@ -24,10 +24,10 @@ retriever = makeVectoreStore (tables, texts, images , table_summary, text_summar
 from langchain_groq import ChatGroq
 
 llm = ChatGroq(
-    model="mixtral-8x7b-32768",
+    model="llama3-8b-8192",
     temperature=0.0,
     max_retries=2,
-    groq_api_key = "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"
+    groq_api_key = "..."
 
 )
 

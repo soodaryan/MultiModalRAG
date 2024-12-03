@@ -2,20 +2,22 @@ import warnings
 warnings.filterwarnings("ignore")
 
 import os
+from typing import Optional
 from dotenv import load_dotenv
+from langchain_groq import ChatGroq
+
 from ragUtils import makeVectoreStore
 from DataExtraction.dataPreprocessing import text_table_img
-from langchain_groq import ChatGroq
-from langchain_core.runnables import RunnablePassthrough, RunnableLambda
-from langchain_core.messages import HumanMessage
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.output_parsers import StrOutputParser
-from langchain.chains.history_aware_retriever import create_history_aware_retriever
-from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain.chains import create_retrieval_chain
-from langchain.chains.combine_documents import create_stuff_documents_chain
-from typing import Optional
 
+from langchain_core.messages import HumanMessage
+from langchain.chains import create_retrieval_chain
+from langchain_core.output_parsers import StrOutputParser
+from langchain_core.runnables import RunnablePassthrough, RunnableLambda
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain.chains.combine_documents import create_stuff_documents_chain
+from langchain.chains.history_aware_retriever import create_history_aware_retriever
+
+load_dotenv()
 
 def load_api_key():
     load_dotenv()
@@ -24,27 +26,36 @@ def load_api_key():
 
 def initialize_retriever(path, api_key : Optional[str] = None) :
     """
+    initializes the retriever to be used in RAG pipeline
     """
 
     if api_key : 
-
         tables, texts, images, text_summary, table_summary, images_summary = text_table_img(path, api_key=api_key)
     
     else :  
-
         tables, texts, images, text_summary, table_summary, images_summary = text_table_img(path)
 
-    
     return makeVectoreStore(tables, texts, images, table_summary, text_summary, images_summary)
 
 
 def initialize_llm(temperature = 0.0):
-    return ChatGroq(
-        model="mixtral-8x7b-32768",
-        temperature= temperature,
-        max_retries=2,
-        groq_api_key="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"
-    )
+    """
+    Initializes the llm with temprature as input param 
+    """
+
+    try : 
+        return ChatGroq(
+            model="llama3-8b-8192",
+            temperature= temperature,
+            max_retries=2,
+        )
+    except : 
+        return ChatGroq(
+            model="llama3-8b-8192",
+            temperature= temperature,
+            max_retries=2,
+            groq_api_key= input("enter groq api key")
+        )
 
 
 def parse_docs(docs):
@@ -52,7 +63,9 @@ def parse_docs(docs):
 
 
 def build_prompt(kwargs):
-
+    """
+    Generates the prompt for suitable input
+    """
     docs_by_type = kwargs["context"]
     user_question = kwargs["question"]
     context_text = "".join(text_element.text for text_element in docs_by_type["texts"])
@@ -61,6 +74,9 @@ def build_prompt(kwargs):
 
 
 def create_chain(retriever, llm):
+    """
+    Generate the chain for retriever and llm workflow
+    """
     chain = (
         {
             "context": retriever | RunnableLambda(parse_docs),
