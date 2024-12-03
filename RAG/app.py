@@ -3,12 +3,13 @@ warnings.filterwarnings("ignore")
 
 import streamlit as st
 
+import RAG.RAG_pipeline as rp
+
+from langchain_core.messages import AIMessage
 from langchain_core.chat_history import BaseChatMessageHistory
 from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain_community.chat_message_histories import ChatMessageHistory
-from langchain_core.messages import AIMessage
 
-import RAG.RAG_pipeline as rp
 chunk_type = "Recursive"
 chunk_size = 800
 chunk_overlap = 100

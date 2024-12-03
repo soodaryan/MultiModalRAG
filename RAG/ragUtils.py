@@ -6,6 +6,12 @@ from langchain.retrievers.multi_vector import MultiVectorRetriever
 from langchain_huggingface import HuggingFaceEmbeddings
 
 def create_retriever (id_key = "doc_id") :
+    """
+    Creates a vector index from the input document inside a directory and returns the retriever associated with it.
+    :param id_key: key given to particular document 
+    :return id_key: ID of document for mapping 
+    return retriever: retriever over document
+    """
 
     # vectorstore for child chunks 
     vectorstore = Chroma(
@@ -30,6 +36,9 @@ def makeVectoreStore (texts,
                       table_summaries,
                       image_summaries
                       ) : 
+    """
+    Wrapper function for generating retriever over all images, text and tables.
+    """
 
     id_key, retriever = create_retriever()
 
@@ -40,7 +49,7 @@ def makeVectoreStore (texts,
     retriever.vectorstore.add_documents(summary_texts)
     retriever.docstore.mset(list(zip(doc_ids, texts)))
 
-    # Add tables
+    # Adding tables
     table_ids = [str(uuid.uuid4()) for _ in tables]
     summary_tables = [
         Document(page_content=summary, metadata={id_key: table_ids[i]}) for i, summary in enumerate(table_summaries)
@@ -48,7 +57,7 @@ def makeVectoreStore (texts,
     retriever.vectorstore.add_documents(summary_tables)
     retriever.docstore.mset(list(zip(table_ids, tables)))
 
-    # Add image summaries
+    # Adding image summaries
     img_ids = [str(uuid.uuid4()) for _ in images]
     summary_img = [
         Document(page_content=summary, metadata={id_key: img_ids[i]}) for i, summary in enumerate(image_summaries)

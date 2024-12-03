@@ -1,13 +1,12 @@
 from pathlib import Path
 from utils import get_doc_tools
 
-from llama_index.core import VectorStoreIndex, Settings
+from utils import initialize_settings
 
 from llama_index.core.agent import AgentRunner
 from llama_index.core.objects import ObjectIndex
+from llama_index.core import VectorStoreIndex, Settings
 from llama_index.core.agent import FunctionCallingAgentWorker
-
-from utils import initialize_settings
 
 def ChatBot() :
     """

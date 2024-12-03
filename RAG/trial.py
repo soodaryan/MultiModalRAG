@@ -1,3 +1,9 @@
+"""
+Please note : this is a dummy document which can be used for rough code examples and testing 
+"""
+
+
+
 import warnings
 warnings.filterwarnings("ignore")
 
