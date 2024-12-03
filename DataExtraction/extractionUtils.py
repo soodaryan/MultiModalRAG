@@ -1,15 +1,18 @@
 import warnings
 warnings.filterwarnings("ignore")
+
 import tqdm
-import glob
-from PIL import Image
 from dotenv import load_dotenv
 from unstructured.partition.pdf import partition_pdf
 
 load_dotenv()
 
 def partition (file_path) : 
-
+    """
+    Creates chunks of given document used for creating embeddings for RAG agent.
+    :param file_path: path of file/doc
+    :return: chunks
+    """
     chunks = partition_pdf(
         filename=file_path,
         infer_table_structure=True,
@@ -27,7 +30,11 @@ def partition (file_path) :
     return chunks
 
 def tables_text (path) : 
-
+    """
+    Extracts Tablular and textual information from teh document
+    :param file_path: path of file/doc
+    :return: tables and texts
+    """
     print("Chunking started")
     chunks = tqdm.tqdm(partition (file_path = path))
     print("Chunking Ended")

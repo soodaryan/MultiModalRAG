@@ -23,8 +23,12 @@ def get_doc_tools(
     file_path: str,
     name: str,
 ):
-    """Get vector query and summary query tools from a document with persistence."""
-
+    """
+    Get vector query and summary query tools from a document with persistence.
+    :param file_path: path of file/doc
+    :param name: name of tool
+    :return: returns Vector Query tool and  Summary tool
+    """
     vector_index = None
 
     if not os.path.exists(PERSIST_DIR):
@@ -48,9 +52,12 @@ def get_doc_tools(
         query: str, 
         page_numbers: Optional[List[str]] = None
     ) -> str:
-        
-        """Use to answer questions over a given paper."""
-
+        """
+        Get vector query tool from a document with persistence used for indexed retrieval.
+        :param query: input query for generation
+        :param page_numbers: optional page numbers to reduce search span of retrieval
+        :return: generate response
+        """
         page_numbers = page_numbers or []
         metadata_dicts = [{"key": "page_label", "value": p} for p in page_numbers]
         
@@ -88,16 +95,18 @@ def get_doc_tools(
     return vector_query_tool, summary_tool
 
 def clean_text(text: str) -> str:
-
-    """Clean the raw text by removing unnecessary whitespace and new lines."""
-
+    """
+    Clean the raw text by removing unnecessary whitespace and new lines.
+    :param text: input unclean text 
+    :return: cleaned text
+    """
     cleaned_text = ' '.join(line.strip() for line in text.split('\n') if line.strip())
     return cleaned_text
 
 def initialize_settings():
-
-    """Used to initialize LLM, Embedding Model and Sentence splitter."""
-
+    """
+    Used to initialize LLM, Embedding Model and Sentence splitter.
+    """
     GROQ_API_KEY = "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"
     Settings.llm = Groq(model="llama3-8b-8192", api_key=GROQ_API_KEY)
     Settings.embed_model = HuggingFaceEmbedding(model_name="sentence-transformers/all-MiniLM-L6-v2")

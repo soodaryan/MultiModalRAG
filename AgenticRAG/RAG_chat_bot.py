@@ -1,5 +1,3 @@
-import os 
-
 from pathlib import Path
 from utils import get_doc_tools
 
@@ -11,7 +9,11 @@ from llama_index.core.agent import FunctionCallingAgentWorker
 
 from utils import initialize_settings
 
-def ChatBot() : 
+def ChatBot() :
+    """
+    Creates Agent instance with specified context. Used to initalize the chat agent for infernece
+    :return: runable agent instance
+    """
     files = [
         "data/document.pdf"
     ]
@@ -56,12 +58,23 @@ def ChatBot() :
 
 
 def chat(query) : 
+    """
+    Generates responses to input queries using chatbot 
+    :param query: input query
+    :return: reponse
+    """
     agent = ChatBot()
     resp = agent.query(query)
     return resp.response
 
 
 def test(agent,query):
+    """
+    Generates responses to input queries using chatbot of choice. Used so that the chatbot is only defined once and not repeatedly on every call 
+    :param query: runable agent instance
+    :param query: input query
+    :return: reponse
+    """
     resp = agent.query(query)
     return resp.response
 
