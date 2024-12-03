@@ -20,6 +20,11 @@ langchain_chroma
 
 
 
+llama_index-embeddings-huggingface
+llama_index-llms-groq
+
+
+
 
 
 
