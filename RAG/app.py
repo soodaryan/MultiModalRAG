@@ -10,17 +10,12 @@ from langchain_core.chat_history import BaseChatMessageHistory
 from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain_community.chat_message_histories import ChatMessageHistory
 
-chunk_type = "Recursive"
-chunk_size = 800
-chunk_overlap = 100
-
 SESSION_ID = "1234"
-B_INST, E_INST = "<s>[INST]", "[/INST]</s>"
-B_SYS, E_SYS = "<<SYS>>\n", "\n<</SYS>>\n\n"
-
-
 
 def context_aware_chain(retriever):
+    """
+    Creates a context aware chain using the retriever as input 
+    """
     llm_sum = rp.initialize_llm(temperature = 0.0)
 
     contextualize_q_system_prompt = (
@@ -36,6 +31,9 @@ def context_aware_chain(retriever):
 
 
 def ans_chain (retriever):
+    """
+    creates and returns an answeringchain using the input retriver 
+    """
     # we increase the temperature here as we dont want the model to directly return the retrieved documents but return some creative answers 
     llm_ans = rp.initialize_llm(temperature = 0.5)
 
@@ -53,6 +51,9 @@ def ans_chain (retriever):
 
 
 def get_session_history(session_id: str) -> BaseChatMessageHistory:
+    """
+    Returns chat histry from streamlit 
+    """
     if session_id not in st.session_state.chat_store:
         st.session_state.chat_store[session_id] = ChatMessageHistory()
     return st.session_state.chat_store[session_id]
@@ -164,3 +165,9 @@ if user_query := st.chat_input("Type your message ✍", disabled=st.session_stat
             response = get_response(st.session_state.final_chain, SESSION_ID, user_query)
             st.session_state.disabled = False
             st.rerun()
+
+
+
+
+
+""""UNDER PROGRESS"""
