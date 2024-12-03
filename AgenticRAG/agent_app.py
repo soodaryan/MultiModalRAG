@@ -34,9 +34,9 @@ def show_ui(prompt_to_user="How may I help you?"):
 def run():
     
     """Wrapper Function to start UI"""
-    
+
     show_ui("What would you like to know?")
 
 
-st.title("DeepSolv RAG task")
+st.title("CE Task")
 run()
