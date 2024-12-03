@@ -1,6 +1,6 @@
 import warnings
 warnings.filterwarnings("ignore")
-
+import tqdm
 import glob
 from PIL import Image
 from dotenv import load_dotenv
@@ -29,7 +29,7 @@ def partition (file_path) :
 def tables_text (path) : 
 
     print("Chunking started")
-    chunks = partition (file_path = path)
+    chunks = tqdm.tqdm(partition (file_path = path))
     print("Chunking Ended")
     
     tables = []
@@ -42,7 +42,7 @@ def tables_text (path) :
         if "CompositeElement" in str(type((chunk))):
             texts.append(chunk)
 
-    print("Tables, text and images extracted")
+    print("Text and Tables extracted")
     return tables, texts 
 
 if __name__ == "__main__" : 

@@ -12,7 +12,9 @@ python_dotenv
 tiktoken
 langchain_huggingface
 chromadb
-langchain-chroma
+streamlit
+langchain_chroma
+# python3 -m RAG.RAG_pipeline
 
 
 

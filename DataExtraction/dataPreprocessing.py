@@ -13,11 +13,11 @@ from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 
-# if running on collab
-from MultiModalRAG.DataExtraction.extractionUtils import tables_text
+# # if running on collab
+# from MultiModalRAG.DataExtraction.extractionUtils import tables_text
 
-# # otherwise 
-# from extractionUtils import tables_text
+# otherwise 
+from DataExtraction.extractionUtils import tables_text
 
 load_dotenv()
 
@@ -91,21 +91,16 @@ def text_table_img (path, api_key : Optional[str] = None) :
 
     pipe = pipeline("image-to-text", model="Salesforce/blip-image-captioning-large", device = 0)
     images, images_summary = encode_images(pipe)
-
+    print("Images extracted")
 
     text_summary, table_summary = get_summaries(tables, texts, api_key)
+    print("Text, Table and Image Summaries extracted")
 
     return tables, texts, images, text_summary, table_summary, images_summary
     
 if __name__ == "__main__" : 
     path = 'data/document.pdf'
-
-    model = ChatGroq(
-        temperature=0.5,
-        model="llama-3.1-8b-instant"    
-    )
-    print("done")
-    chain = get_chain()
     
     tables, texts, images , text_summary, table_summary, image_summary= text_table_img(path)
-
+    print(f"tables : {len(tables)}")
+    print(f"tables : {len(table_summary)}")
