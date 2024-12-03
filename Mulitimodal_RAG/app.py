@@ -3,7 +3,7 @@ warnings.filterwarnings("ignore")
 
 import streamlit as st
 
-import RAG.RAG_pipeline as rp
+import RAG_pipeline as rp
 
 from langchain_core.messages import AIMessage
 from langchain_core.chat_history import BaseChatMessageHistory

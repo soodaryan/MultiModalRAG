@@ -3,7 +3,7 @@ warnings.filterwarnings("ignore")
 
 import os
 from dotenv import load_dotenv
-from RAG.ragUtils import makeVectoreStore
+from ragUtils import makeVectoreStore
 from DataExtraction.dataPreprocessing import text_table_img
 from langchain_groq import ChatGroq
 from langchain_core.runnables import RunnablePassthrough, RunnableLambda

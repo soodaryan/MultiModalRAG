@@ -9,7 +9,7 @@ warnings.filterwarnings("ignore")
 
 import os 
 from dotenv import load_dotenv
-from RAG.ragUtils import makeVectoreStore
+from Mulitimodal_RAG.ragUtils import makeVectoreStore
 from DataExtraction.dataPreprocessing import text_table_img
 
 load_dotenv()
