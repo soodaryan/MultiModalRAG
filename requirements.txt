@@ -14,8 +14,9 @@ langchain_huggingface
 chromadb
 streamlit
 langchain_chroma
+langchain_core
 # python3 -m RAG.RAG_pipeline
-
+datasets
 
 
 

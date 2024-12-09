@@ -1,0 +1,44 @@
+{
+  "citation": "",
+  "description": "",
+  "features": {
+    "context": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "question": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "answer": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "groundedness_score": {
+      "dtype": "int64",
+      "_type": "Value"
+    },
+    "groundedness_eval": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "relevance_score": {
+      "dtype": "int64",
+      "_type": "Value"
+    },
+    "relevance_eval": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "standalone_score": {
+      "dtype": "int64",
+      "_type": "Value"
+    },
+    "standalone_eval": {
+      "dtype": "string",
+      "_type": "Value"
+    }
+  },
+  "homepage": "",
+  "license": ""
+}
