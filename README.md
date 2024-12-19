@@ -1,4 +1,4 @@
-# 🚀 Document Processing with RAG - CE TASK
+# 🚀 Document Processing with RAG
 
 Hi there! 👋 This is my implementation of RAG-based pipeline to extract structured information from the given document. I explored two different workflows—Agentic and Multimodal—to tackle this challenge, and I’m excited to share my work with you! 😊
 
